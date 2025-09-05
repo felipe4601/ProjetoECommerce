@@ -28,7 +28,7 @@ public class Pedido {
     @Column(name = "status", nullable = false, length = Integer.MAX_VALUE)
     private String status;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false) // é dessa forma que o java entende o muito para muitos
+    @ManyToOne(fetch = FetchType.EAGER, optional = false) // é dessa forma que o java entende o muito para muitos
     @JoinColumn(name = "cliente_id", nullable = false)
     private Cliente cliente;
 
