@@ -25,7 +25,7 @@ public class Pagamento {
     @Column(name = "data_pagamento")
     private OffsetDateTime dataPagamento;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "pedido_id", nullable = false)
     private Pedido pedido;
 

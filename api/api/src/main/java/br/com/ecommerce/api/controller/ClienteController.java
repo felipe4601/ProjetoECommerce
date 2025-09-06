@@ -21,7 +21,7 @@ public class ClienteController{
     public ClienteController(ClienteService service){
         clienteService = service;
     }
-    // porta para um método, que pega os dados do banco
+    // porta de entrada para um método, que pega os dados do banco de dados
     @GetMapping
     public ResponseEntity<List<Cliente>> listarCliente(){
         // 1. Pegar a lista de clientes
