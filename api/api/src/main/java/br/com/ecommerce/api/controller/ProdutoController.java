@@ -35,8 +35,11 @@ public class ProdutoController {
         Produto produto = produtoService.buscarPorId(id);
         if(produto == null){
             return ResponseEntity.notFound().build();
+            // Se estiver vazio ele retorna status 404
+            // produto não encontrado
         }
         return ResponseEntity.ok(produto);
+        // Mas senão ele retorna o status 200
     }
 
     @PostMapping
@@ -50,5 +53,23 @@ public class ProdutoController {
         // return ResponseEntity.ok(produto);
         // Código 201 - CREATED
         return ResponseEntity.status(HttpStatus.CREATED).body(produto);
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<Produto> atualizarProduto(@PathVariable Integer id, @RequestBody Produto produto){
+        Produto produtoAtualizado = produtoService.atualizarProduto(id,produto);
+        if(produtoAtualizado == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(produtoAtualizado);
+
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> removerProduto(@PathVariable Integer id){
+        produtoService.deletarProduto(id);
+        return ResponseEntity.noContent().build();
+        // Retorna o status code 204 - no content
+        // É a maneira padrão e correta de dizer
+        // "A exclusão foi bem-sucedida.
     }
 }

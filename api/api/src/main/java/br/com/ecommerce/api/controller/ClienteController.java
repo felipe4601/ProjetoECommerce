@@ -28,6 +28,15 @@ public class ClienteController{
         return ResponseEntity.ok().body(clientes);
     }
     // Resposta para sites
+    //Método para buscar por id
+    @GetMapping("/{id}")
+    public ResponseEntity<Cliente> buscarClientePorId(@PathVariable Integer id){
+        Cliente cliente = clienteService.buscarPorId(id);
+        if(cliente == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(cliente);
+    }
 
     // método para cadastrar cliente
     @PostMapping
@@ -35,5 +44,16 @@ public class ClienteController{
         clienteService.cadastrarCliente(cliente);
         return ResponseEntity.status(HttpStatus.CREATED).body(cliente);
     }
+
+    // Método para atualizar cadastro de cliente
+    @PutMapping("/{id}")
+    public ResponseEntity<Cliente> atualizarCliente(@PathVariable Integer id, Cliente cliente){
+        Cliente clienteAtualizado = clienteService.atualizarCliente(id,cliente);
+        if(clienteAtualizado == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(clienteAtualizado);
+    }
+
 }
 
