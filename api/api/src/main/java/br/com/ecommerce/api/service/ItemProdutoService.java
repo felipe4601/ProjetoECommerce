@@ -17,4 +17,6 @@ public class ItemProdutoService {
     public List<ItemProduto> listarTodos(){
         return itemProdutoRepository.findAll();
     }
+
+    // Método para cadastrar item
 }

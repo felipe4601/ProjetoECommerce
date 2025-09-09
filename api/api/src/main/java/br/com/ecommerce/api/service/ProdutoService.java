@@ -21,40 +21,43 @@ public class ProdutoService {
     public List<Produto> listarTodos(){
         return produtoRepository.findAll();
     }
-
-    // método para buscar por nome
-    public Optional<Produto> findByNomeProdutoIgoreCase(String nomeProduto){
-        return produtoRepository.findByNomeProdutoIgoreCase(nomeProduto);
-    }
-
+//
+//    // método para buscar por nome
+//    public Optional<Produto> findByNomeProdutoIgoreCase(String nomeProduto){
+//        return produtoRepository.findByNomeProdutoIgoreCase(nomeProduto);
+//
+//    }
+//
     // método para buscar por id
     public Produto buscarPorId(Integer id){
         Optional<Produto> produto = produtoRepository.findById(id);
-
         return produto.orElse(null);
     }
 
     // método para cadastrar
     public Produto cadastrarProduto(Produto produto){
         return produtoRepository.save(produto);
+        // salvar no banco de dados, que representa o meu banco de dados
+        // atualmente.
+        // traduzindo para sql seria um INSERT INTO
     }
-
-    // Método para atualizar produto
-    public Produto atualizarProduto(Integer id, Produto novoProduto){
-        Produto produtoExistente = buscarPorId(id);
-
-        if(produtoExistente == null){
-            return null;
-        }
-        produtoExistente.setNomeProduto(novoProduto.getNomeProduto());
-
-        return produtoRepository.save(produtoExistente);
-    }
-
-    // Método para deletar produto
-    public void deletarProduto(Integer id){
-        Produto produto = buscarPorId(id);
-        produtoRepository.delete(produto);
-    }
+//
+//    // Método para atualizar produto
+//    public Produto atualizarProduto(Integer id, Produto novoProduto){
+//        Produto produtoExistente = buscarPorId(id);
+//
+//        if(produtoExistente == null){
+//            return null;
+//        }
+//        produtoExistente.setNomeProduto(novoProduto.getNomeProduto());
+//
+//        return produtoRepository.save(produtoExistente);
+//    }
+//
+//    // Método para deletar produto
+//    public void deletarProduto(Integer id){
+//        Produto produto = buscarPorId(id);
+//        produtoRepository.delete(produto);
+//    }
 }
 

@@ -23,4 +23,12 @@ public class ClienteService {
     public List<Cliente> listarTodos(){
         return clienteRepository.findAll();
     }
+
+
+    // Método para cadastrar Cliente
+    public Cliente cadastrarCliente(Cliente cliente){
+        return clienteRepository.save(cliente);
+    }
+
 }
+

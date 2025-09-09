@@ -2,6 +2,7 @@ package br.com.ecommerce.api.controller;
 
 import br.com.ecommerce.api.model.Produto;
 import br.com.ecommerce.api.service.ProdutoService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,6 +11,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/produtos")
 @ResponseBody
+// Controller é a porta para o front, ou seja, ele rebebe as requisições e
+// retorna a resposta
 // ResponseBody faz a conversão automática, ele transforma o retorno de um
 // método em Json antes de enviá-lo na resposta HTTP
 public class ProdutoController {
@@ -34,5 +37,18 @@ public class ProdutoController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(produto);
+    }
+
+    @PostMapping
+    // Do tipo ResponseEntity, pois ele irá retornar um statusCode de Produto
+    // @RequstBody determina de onde o cliente virá, se não o spring não
+    // irá entender de onde o cliente está vindo
+    public ResponseEntity<Produto> cadastrarProduto(@RequestBody Produto produto){
+        // 1.Tentar cadastrar um cliente
+        produtoService.cadastrarProduto(produto);
+        // Código 200 - OK
+        // return ResponseEntity.ok(produto);
+        // Código 201 - CREATED
+        return ResponseEntity.status(HttpStatus.CREATED).body(produto);
     }
 }

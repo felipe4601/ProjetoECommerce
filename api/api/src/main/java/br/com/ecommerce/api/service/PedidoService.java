@@ -19,4 +19,9 @@ public class PedidoService {
     public List<Pedido> listarTodos(){
         return pedidoRepository.findAll();
     }
+
+    // Método para cadastrar Pedidos
+    public Pedido cadastrarPedido(Pedido pedido){
+        return pedidoRepository.save(pedido);
+    }
 }

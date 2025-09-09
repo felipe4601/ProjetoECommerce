@@ -18,4 +18,8 @@ public class PagamentoService {
     public List<Pagamento> listarTodos(){
         return pagamentoRepository.findAll();
     }
+    // Método para cadastrar pagamento
+    public Pagamento cadastrarPagamento(Pagamento pagamento){
+        return pagamentoRepository.save(pagamento);
+    }
 }
