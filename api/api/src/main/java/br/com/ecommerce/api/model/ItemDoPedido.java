@@ -4,27 +4,25 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import static jakarta.persistence.FetchType.EAGER;
-
 @Getter
 @Setter
 @Entity
-@Table(name = "item_produto", schema = "ecommerce")
-public class ItemProduto {
+@Table(name = "item_do_pedido", schema = "ecommerce")
+public class ItemDoPedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_item_do_produto", nullable = false)
+    @Column(name = "id_item_do_pedido", nullable = false)
     private Integer id;
 
     @Column(name = "quantidade", nullable = false)
     private Integer quantidade;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "produto_id", nullable = false)
+    @JoinColumn(name = "id_produto", nullable = false)
     private Produto produto;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "pedido_id", nullable = false)
+    @JoinColumn(name = "id_pedido", nullable = false)
     private Pedido pedido;
 
 }

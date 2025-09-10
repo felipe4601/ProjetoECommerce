@@ -66,7 +66,6 @@ public class ProdutoController {
     }
 
     @DeleteMapping("/{id}")
-    @Transactional
     public ResponseEntity<?> deletarProduto(@PathVariable Integer id){
         Produto produtoDeletado = produtoService.deletarProduto(id);
 

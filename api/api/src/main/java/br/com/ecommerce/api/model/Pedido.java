@@ -29,7 +29,7 @@ public class Pedido {
     private String status;
 
     @ManyToOne( fetch = FetchType.EAGER, optional = false) // é dessa forma que o java entende o muito para muitos
-    @JoinColumn(name = "cliente_id", nullable = false)
+    @JoinColumn(name = "id_cliente", nullable = false)
     private Cliente cliente;
 
 }

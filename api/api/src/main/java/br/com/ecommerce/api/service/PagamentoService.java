@@ -31,7 +31,7 @@ public class PagamentoService {
     }
 
     // Método para atualizar
-    public Pagamento cadastrarPagamento(Integer id, Pagamento novoPagamento){
+    public Pagamento atualizarPagamento(Integer id, Pagamento novoPagamento){
         Pagamento pagamentoExistente = buscarPorId(id);
 
         if(pagamentoExistente == null){
@@ -40,7 +40,6 @@ public class PagamentoService {
         pagamentoExistente.setDataPagamento(novoPagamento.getDataPagamento());
         pagamentoExistente.setFormaPagamento((novoPagamento.getFormaPagamento()));
         pagamentoExistente.setPedido(novoPagamento.getPedido());
-        pagamentoExistente.setStatus(novoPagamento.getStatus());
         return pagamentoRepository.save(pagamentoExistente);
     }
     // Método para deletar pagamento

@@ -43,7 +43,7 @@ public class PagamentoController {
     // Método para atualizar pagamento
     @PutMapping("/{id}")
     public ResponseEntity<Pagamento> atualizarPagamento(@PathVariable Integer id, @RequestBody Pagamento pagamento){
-        Pagamento pagamentoAtualizado = pagamentoService.cadastrarPagamento(pagamento);
+        Pagamento pagamentoAtualizado = pagamentoService.atualizarPagamento(id,pagamento);
         if(pagamentoAtualizado == null){
             return ResponseEntity.notFound().build();
         }

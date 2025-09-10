@@ -19,14 +19,11 @@ public class Pagamento {
     @Column(name = "forma_pagamento", nullable = false, length = Integer.MAX_VALUE)
     private String formaPagamento;
 
-    @Column(name = "status", nullable = false, length = Integer.MAX_VALUE)
-    private String status;
-
     @Column(name = "data_pagamento")
     private OffsetDateTime dataPagamento;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "pedido_id", nullable = false)
+    @JoinColumn(name = "id_pedido", nullable = false)
     private Pedido pedido;
 
 }
