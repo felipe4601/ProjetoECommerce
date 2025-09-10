@@ -2,6 +2,7 @@ package br.com.ecommerce.api.controller;
 
 import br.com.ecommerce.api.model.Produto;
 import br.com.ecommerce.api.service.ProdutoService;
+import jakarta.transaction.Transactional;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -65,8 +66,14 @@ public class ProdutoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> removerProduto(@PathVariable Integer id){
-        produtoService.deletarProduto(id);
+    @Transactional
+    public ResponseEntity<?> deletarProduto(@PathVariable Integer id){
+        Produto produtoDeletado = produtoService.deletarProduto(id);
+
+        if(produtoDeletado == null){
+            return ResponseEntity.notFound().build();
+            // Retorna o erro 404 - produto não encontrado
+        }
         return ResponseEntity.noContent().build();
         // Retorna o status code 204 - no content
         // É a maneira padrão e correta de dizer

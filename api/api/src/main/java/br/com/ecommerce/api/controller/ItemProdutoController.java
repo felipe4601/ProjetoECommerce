@@ -51,5 +51,18 @@ public class ItemProdutoController {
         return ResponseEntity.ok(itemProdutoAtualizado);// 200 - 0k
     }
 
+    // Método para deletar Item do Produto
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ItemProduto> deletarItemProduto(@PathVariable Integer id){
+        ItemProduto itemProdutoDeletado = itemProdutoService.deletarItemProduto(id);
+        // se o produto não for encontrado ele retorna 404
+        // not found - não encontrado
+        if(itemProdutoDeletado == null){
+            return ResponseEntity.notFound().build();
+        }
+        // mas se o produtor foi encontrado ele retorna 201
+        return ResponseEntity.noContent().build();
+    }
+
 
 }

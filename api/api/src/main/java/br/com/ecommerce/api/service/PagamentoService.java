@@ -43,5 +43,15 @@ public class PagamentoService {
         pagamentoExistente.setStatus(novoPagamento.getStatus());
         return pagamentoRepository.save(pagamentoExistente);
     }
+    // Método para deletar pagamento
+    public Pagamento deletarPagamento(Integer id){
+        Pagamento pagamento = buscarPorId(id);
+        // Verificamos se o pagamento existe
+        if (pagamento == null) {
+            return null;
+        }
+        pagamentoRepository.delete(pagamento);
+        return pagamento;
+    }
 }
 

@@ -46,4 +46,14 @@ public class PedidoService {
         pedidoExistente.setValorTotal(novoPedido.getValorTotal());
         return pedidoRepository.save(pedidoExistente);
     }
+
+    // Método para deletar pedido
+    public Pedido deletarPedido(Integer id){
+        Pedido pedido = buscarPorId(id);
+        if(pedido == null){
+            return null;
+        }
+        pedidoRepository.delete(pedido);
+        return pedido;
+    }
 }

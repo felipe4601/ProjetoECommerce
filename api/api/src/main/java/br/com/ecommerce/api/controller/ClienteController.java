@@ -55,5 +55,16 @@ public class ClienteController{
         return ResponseEntity.ok(clienteAtualizado);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Cliente> deletarCliente(@PathVariable Integer id){
+        Cliente clienteDeletado = clienteService.deletarCliente(id);
+        // se o cliente não for encontrado ele retorna o status code
+        // 404 - notFound: cliente não encotrado
+        if (clienteDeletado == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.noContent().build();
+    }
+
 }
 

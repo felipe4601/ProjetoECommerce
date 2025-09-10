@@ -65,9 +65,13 @@ public class ProdutoService {
     }
 
     // Método para deletar produto
-    public void deletarProduto(Integer id){
+    public Produto deletarProduto(Integer id){
         Produto produto = buscarPorId(id);
+        if(produto == null){
+            return null;
+        }
         produtoRepository.delete(produto);
+        return produto;
     }
 }
 

@@ -51,5 +51,15 @@ public class ClienteService {
         clienteExistente.setSenha(novoCliente.getSenha());
         return clienteRepository.save(clienteExistente);
     }
+
+    // Método para deletar Cliente
+    public Cliente deletarCliente(Integer id){
+        Cliente cliente = buscarPorId(id);
+        if(cliente == null){
+            return null;
+        }
+        clienteRepository.delete(cliente);
+        return cliente;
+    }
 }
 

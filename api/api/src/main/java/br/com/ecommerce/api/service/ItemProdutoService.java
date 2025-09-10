@@ -45,4 +45,15 @@ public class ItemProdutoService {
         itemProdutoExistente.setQuantidade(novoItemProduto.getQuantidade());
         return itemProdutoRepository.save(itemProdutoExistente);
     }
+
+    // Método para deletar itemDoproduto
+    public ItemProduto deletarItemProduto(Integer id){
+        ItemProduto itemProduto = buscarPorId(id);
+        // verifica se o objeto é nulo
+        if(itemProduto == null){
+            return null;
+        }
+        itemProdutoRepository.delete(itemProduto);
+        return itemProduto;
+    }
 }

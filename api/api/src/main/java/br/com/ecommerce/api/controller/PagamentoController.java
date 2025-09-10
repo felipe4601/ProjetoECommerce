@@ -49,4 +49,18 @@ public class PagamentoController {
         }
         return ResponseEntity.ok(pagamentoAtualizado);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deletarPagamento(@PathVariable Integer id) {
+        Pagamento pagamentoDeletado = pagamentoService.deletarPagamento(id);
+        // se o objeto pagamentoDeletado for null ele retorna o erro 404
+        // pagamento não encontrado
+        if (pagamentoDeletado == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.noContent().build();
+        // mas se o pagamento for encontrado ele retorna o status
+        // code 204 É a maneira padrão e correta de dizer
+        // "A exclusão foi bem-sucedida.
+    }
 }
