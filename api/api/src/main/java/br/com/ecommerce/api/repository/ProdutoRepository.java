@@ -13,10 +13,11 @@ import java.util.Optional;
 public interface ProdutoRepository extends JpaRepository<Produto, Integer> {
     // Métodos adicionais que não vem no pacote padrão, e precisamos adicionar no repository
     // Buscar pelo nome do produto sem case sentitive
- // Optional<Produto> findByNomeProdutoIgoreCase(String nomeProduto);
+    Optional<Produto> findByNomeProdutoIgnoreCase(String nomeProduto);
 //    // Optional é um tipo, que receber um objeto nulo ou não.
+    List<Produto> findByNomeProdutoContainsIgnoreCase(String nomeProduto);
 //    // Buscar pela descrição
-//    List<Produto> findByDescricao(String descricao);
+// List<Produto> findByDescricaoIgnoreCase(String descricao);
 //    // Buscar produtos com preco maior que um determinado valor
 //    List<Produto> findByPrecoGreaterThan(BigDecimal valor);
 //    // Buscar produto cujo nome contehna um texto específico como  o LIKE no
