@@ -38,6 +38,7 @@ public class ProdutoService {
 
     // método para cadastrar
     public Produto cadastrarProduto(Produto produto){
+
         return produtoRepository.save(produto);
         // salvar no banco de dados, que representa o meu banco de dados
         // atualmente.
