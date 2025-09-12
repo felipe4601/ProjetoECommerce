@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/produtos")
@@ -77,5 +78,23 @@ public class ProdutoController {
         // Retorna o status code 204 - no content
         // É a maneira padrão e correta de dizer
         // "A exclusão foi bem-sucedida.
+    }
+
+    // MÉTODOS ADICIONAIS:
+    //Para buscar por sem case Sensitive
+    @GetMapping("ignoreCase/{nomeProduto}")
+    public ResponseEntity<?> findByNomeProdutoIgnoreCase(@PathVariable String nomeProduto){
+        Optional produtoDigitado = produtoService.findByNomeProdutoIgnoreCase(nomeProduto);
+        if(produtoDigitado == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(produtoDigitado);
+    }
+
+    // Método para buscar por nome
+    @GetMapping("containingIgnoreCase/{nomeProduto}")
+    public ResponseEntity<?> findByNomeProdutoContainsIgnoreCase(@PathVariable String nomeProduto){
+        List<Produto> produtos = produtoService.findByNomeProdutoContainsIgnoreCase(nomeProduto);
+        return ResponseEntity.ok(produtos);
     }
 }

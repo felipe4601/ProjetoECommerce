@@ -74,5 +74,23 @@ public class ProdutoService {
         produtoRepository.delete(produto);
         return produto;
     }
+    // Método para buscar por nome
+    public Optional<Produto> findByNomeProdutoIgnoreCase(String nomeProduto){
+        Optional<Produto> produto = produtoRepository.findByNomeProdutoIgnoreCase(nomeProduto);
+        if(produto == null){
+            return null;
+        }
+        return produto;
+    }
+
+    // Método contains para buscar por todos os produtos, que contenham o que escrevi
+    public List<Produto> findByNomeProdutoContainsIgnoreCase(String nomeProduto){
+        return produtoRepository.findByNomeProdutoContainsIgnoreCase(nomeProduto);
+    }
+
+    // Método para buscar por descrição com Ignore Case
+//    public List<Produto> findByDescricaoIgnoreCase(String descricao){
+//        return produtoRepository.
+//    }
 }
 
