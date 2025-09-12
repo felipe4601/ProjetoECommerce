@@ -1,5 +1,6 @@
 package br.com.ecommerce.api.controller;
 
+import br.com.ecommerce.api.Dto.RealizarVendaDto;
 import br.com.ecommerce.api.model.Pedido;
 import br.com.ecommerce.api.repository.PedidoRepository;
 import br.com.ecommerce.api.service.PedidoService;
@@ -36,13 +37,13 @@ public class PedidoController {
         }
         return ResponseEntity.ok(pedido);
     }
-    @PostMapping
-    public ResponseEntity<Pedido> cadastrarPedido(@RequestBody Pedido pedido){
-        // Usamos @RequestBody para que o spring pegue a requisição, que se espera ser um
-        // Json, e convertê-lo em um objeto Produto
-        Pedido novoPedido = pedidoService.cadastrarPedido(pedido);
-        return new ResponseEntity<>(novoPedido, HttpStatus.CREATED);
-    }
+//    @PostMapping
+//    public ResponseEntity<Pedido> cadastrarPedido(@RequestBody Pedido pedido){
+//        // Usamos @RequestBody para que o spring pegue a requisição, que se espera ser um
+//        // Json, e convertê-lo em um objeto Produto
+//        Pedido novoPedido = pedidoService.cadastrarPedido(pedido);
+//        return new ResponseEntity<>(novoPedido, HttpStatus.CREATED);
+//    }
 
     @PutMapping("/{id}")
     public ResponseEntity<Pedido> atualizarPedido(@PathVariable Integer id, @RequestBody Pedido pedido){
@@ -69,5 +70,13 @@ public class PedidoController {
         // Retorna o status code 204 - no content
         // É a maneira padrão e correta de dizer
         // "A exclusão foi bem-sucedida.
+    }
+
+    // Método DTO para realizar venda
+    @PostMapping
+    public ResponseEntity<Pedido> realizarVenda(@RequestBody RealizarVendaDto dto){
+        Pedido pedidoSalvo = pedidoService.realizarPedido(dto);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(pedidoSalvo);
     }
 }

@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -91,10 +92,32 @@ public class ProdutoController {
         return ResponseEntity.ok(produtoDigitado);
     }
 
+    // CRIANDO MÉTODOS ADICIONAIS
     // Método para buscar por nome
     @GetMapping("containingIgnoreCase/{nomeProduto}")
     public ResponseEntity<?> findByNomeProdutoContainsIgnoreCase(@PathVariable String nomeProduto){
         List<Produto> produtos = produtoService.findByNomeProdutoContainsIgnoreCase(nomeProduto);
         return ResponseEntity.ok(produtos);
     }
+
+    @GetMapping("contains/{descricao}")
+    public ResponseEntity<?> findByDescricaoContainsIgnoreCase(@PathVariable String descricao){
+        List<Produto> produtos = produtoService.findByDescricaoContainsIgnoreCase(descricao);
+        return ResponseEntity.ok(produtos);
+    }
+
+    // Método para buscar por preco
+    @GetMapping("preco/{valor}")
+    public ResponseEntity<?> findByPrecoGreaterThan(@PathVariable BigDecimal valor){
+        List<Produto> produtos = produtoService.findByPrecoGreaterThan(valor);
+        return ResponseEntity.ok(produtos);
+    }
+
+    // Método para buscar por nome do produto
+    @GetMapping("containing/{texto}")
+    public ResponseEntity<?> findByNomeProdutoContaining(@PathVariable String texto){
+        List<Produto> produtos = produtoService.findByNomeProdutoContaining(texto);
+        return ResponseEntity.ok(produtos);
+    }
+
 }

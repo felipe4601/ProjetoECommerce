@@ -4,6 +4,7 @@ import br.com.ecommerce.api.model.Produto;
 import br.com.ecommerce.api.repository.ProdutoRepository;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -89,8 +90,20 @@ public class ProdutoService {
     }
 
     // Método para buscar por descrição com Ignore Case
-//    public List<Produto> findByDescricaoIgnoreCase(String descricao){
-//        return produtoRepository.
-//    }
+    public List<Produto> findByDescricaoContainsIgnoreCase(String descricao){
+        return produtoRepository.findByDescricaoContainsIgnoreCase(descricao);
+    }
+
+    // Método para buscar por preco
+    public List<Produto> findByPrecoGreaterThan(BigDecimal valor){
+        return produtoRepository.findByPrecoGreaterThan(valor);
+    }
+
+    // Método para buscar por nome containing
+    public List<Produto> findByNomeProdutoContaining(String texto){
+        return produtoRepository.findByNomeProdutoContaining(texto);
+    }
+
+
 }
 

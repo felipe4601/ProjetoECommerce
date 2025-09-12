@@ -17,12 +17,12 @@ public interface ProdutoRepository extends JpaRepository<Produto, Integer> {
 //    // Optional é um tipo, que receber um objeto nulo ou não.
     List<Produto> findByNomeProdutoContainsIgnoreCase(String nomeProduto);
 //    // Buscar pela descrição
-// List<Produto> findByDescricaoIgnoreCase(String descricao);
+    List<Produto> findByDescricaoContainsIgnoreCase(String descricao);
 //    // Buscar produtos com preco maior que um determinado valor
-//    List<Produto> findByPrecoGreaterThan(BigDecimal valor);
+    List<Produto> findByPrecoGreaterThan(BigDecimal valor);
 //    // Buscar produto cujo nome contehna um texto específico como  o LIKE no
 //    // sql
-//    List<Produto> findByNomeProdutoContaining(String texto);
+    List<Produto> findByNomeProdutoContaining(String texto);
 
 
 }

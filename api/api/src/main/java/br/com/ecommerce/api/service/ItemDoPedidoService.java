@@ -56,4 +56,7 @@ public class ItemDoPedidoService {
         itemDoPedidoRepository.delete(itemDoPedido);
         return itemDoPedido;
     }
+
+    // Método para realizar venda
+
 }

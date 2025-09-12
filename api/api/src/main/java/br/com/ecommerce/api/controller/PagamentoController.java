@@ -1,5 +1,7 @@
 package br.com.ecommerce.api.controller;
 
+import br.com.ecommerce.api.Dto.PagamentoCadastroDTO;
+import br.com.ecommerce.api.Dto.PagamentoListagemDTO;
 import br.com.ecommerce.api.model.Pagamento;
 import br.com.ecommerce.api.service.PagamentoService;
 import org.springframework.http.HttpStatus;
@@ -17,9 +19,9 @@ public class PagamentoController {
         pagamentoService = service;
     }
     @GetMapping
-    public ResponseEntity<List<Pagamento>> listarPagamentos(){
-        List<Pagamento> pagamentos = pagamentoService.listarTodos();
-        return ResponseEntity.ok().body(pagamentos);
+    public ResponseEntity<List<PagamentoListagemDTO>> listarPagamentos(){
+        List<PagamentoListagemDTO> pagamentos = pagamentoService.listarTodos();
+        return ResponseEntity.ok(pagamentos);
     }
     // Método para buscar por id
     @GetMapping("/{id}")
@@ -35,9 +37,9 @@ public class PagamentoController {
     }
 
     @PostMapping
-    public ResponseEntity<Pagamento> cadastrarPagamento(@RequestBody Pagamento pagamento){
-        pagamentoService.cadastrarPagamento(pagamento);
-        return ResponseEntity.status(HttpStatus.CREATED).body(pagamento);
+    public ResponseEntity<Pagamento> cadastrar(@RequestBody PagamentoCadastroDTO dto){
+        Pagamento pagamentoSalvo = pagamentoService.criarPagamento(dto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(pagamentoSalvo);
     }
 
     // Método para atualizar pagamento
