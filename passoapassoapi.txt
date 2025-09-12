@@ -1,0 +1,19 @@
+Passo a Passo de como fazer o CRUD:
+
+1 - Criar a Model
+
+2 - Criar o repository 
+Criamos o repository como uma interface com o nome da tabela seguido de repository, e por fim, nós conectamos a interface com o jpa repository usando "extends JpaRepository <Model, Integer>", dessa forma, nos conectamos com o jpa.
+
+3 - Cria o Service
+
+Service é a classe que agrupa toda a lógica de negócios, bloqueia uma anormalidade antes de mandar para o repository.
+Primeiro nós inserimos a anotação "@Service" para avisar ao spring, que esta classe é um service. Depois criamos uma constante para armazenar o repository, pois o repository nunca mudará. Em seguida, criamos um construtor, que irá receber um repository, e criar um objeto
+do tipo service, essa é a injeção de dependência.
+
+4 - Criar o Controller
+
+São reponsáveis por receber as requisições HTTP, chamar os repositories e devolver uma resposta ao cliente.
+Aqui fica a porta de entrada da api. 
+Primeiro nós fazemos a anotação "@RestController" e "@RestMapping("/api/classe/"). RestController avisa ao spring, que esta classe é um controller e segue o formato rest. RestMapping é o caminho para a nossa api. Depois nós criamos uma constante do tipo service, e criamos 
+um construtor, que recebe um argumento do tipo service para criar um controller, essa é a injeção de dependência. 

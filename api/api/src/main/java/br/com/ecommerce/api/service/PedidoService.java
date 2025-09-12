@@ -92,28 +92,29 @@ public class PedidoService {
         novoPedido.setDataPedido(OffsetDateTime.now());
         novoPedido.setValorTotal(BigDecimal.valueOf(dto.getQuantidade()).multiply(produtoAssociado.getPreco()));
         novoPedido.setStatus("PENDENTE");
+        pedidoRepository.save(novoPedido);
 
         // Mapeando a classe Produto
         produtoAssociado.setEstoqueDisponivel(produtoAssociado.getEstoqueDisponivel()-dto.getQuantidade());
-
+        produtoRepository.save(produtoAssociado);
 
         // Mapeando a classe ItemDoPedido
         ItemDoPedido quantidadeItensDoPedido = new ItemDoPedido();
         quantidadeItensDoPedido.setProduto(produtoAssociado);
         quantidadeItensDoPedido.setPedido(novoPedido);
         quantidadeItensDoPedido.setQuantidade(dto.getQuantidade());
-
-
-
+        itemDoPedidoRepository.save(quantidadeItensDoPedido);
         // Mapeando a classe Pagamento
         novoPagamento.setFormaPagamento(dto.getFormaPagamento());
         novoPagamento.setPedido(novoPedido);
         novoPagamento.setDataPagamento(OffsetDateTime.now());
-        // Salvando as demais classes
-        itemDoPedidoRepository.save(quantidadeItensDoPedido);
         pagamentoRepository.save(novoPagamento);
-        produtoRepository.save(produtoAssociado);
-        return pedidoRepository.save(novoPedido);
+        // Salvando as demais classes
+
+
+
+
+        return novoPedido;
     }
 }
 
