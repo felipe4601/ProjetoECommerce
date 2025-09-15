@@ -109,10 +109,7 @@ public class PedidoService {
         novoPagamento.setPedido(novoPedido);
         novoPagamento.setDataPagamento(OffsetDateTime.now());
         pagamentoRepository.save(novoPagamento);
-        // Salvando as demais classes
-
-
-
+        
 
         return novoPedido;
     }
